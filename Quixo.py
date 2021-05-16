@@ -239,4 +239,4 @@ def start(bot):
 
 meniu()
 
-print("Salut")
+print("Bună")
