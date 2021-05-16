@@ -2,7 +2,7 @@
 import pygame
 from pygame.locals import *
 import sys
-import random
+from random import randint
 from pygame.locals import (
 	K_2,
 	K_1,
@@ -55,7 +55,11 @@ def draw_board():
 
 
 
+def random():
 
+	coloana = randint(0,4)
+	linie = randint(0,4)
+	return coloana, linie
 
 def draw_markers():
 	x_pos = 0
@@ -65,7 +69,7 @@ def draw_markers():
 			if y == 1:
 				pygame.draw.line(screen, red, (x_pos * 100 + 15, y_pos * 100 + 15), (x_pos * 100 + 85, y_pos * 100 + 85), line_width)
 				pygame.draw.line(screen, red, (x_pos * 100 + 85, y_pos * 100 + 15), (x_pos * 100 + 15, y_pos * 100 + 85), line_width)
-			if y == -1:
+			if (y == -1):
 				pygame.draw.circle(screen, green, (x_pos * 100 + 50, y_pos * 100 + 50), 38, line_width)
 			y_pos += 1
 		x_pos += 1
@@ -74,7 +78,7 @@ def draw_markers():
 def check_game_over():
 	global game_over
 	global winner
-
+	print(markers)
 	x_pos = 0
 	for x in markers:
 		#check columns
@@ -137,10 +141,13 @@ def quit():
     sys.exit()
 
 def meniu():
-
 	global bot
 	screen.fill((255, 255, 255)) # bg inceput
-	# font = pygame.font.SysFont('freesansbold.ttf', 19)
+	font = pygame.font.SysFont('freesansbold.ttf', 19)
+	text = font.render("If you want to play press SPACE", True, (0, 0, 0))
+	textpos = text.get_rect()
+	textpos.center = (screen_width // 2, screen_height // 2)
+	screen.blit(text, textpos)
 	while True:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
@@ -149,22 +156,24 @@ def meniu():
 				if event.key == K_ESCAPE:
 					quit()
 				if event.key == K_1:
-					bot = 0
-					start()
+					start(0)
 				if event.key == K_2:
-					bot = 1
-					start()
+					start(1)
 
-        # text = font.render("If you want to play press SPACE",1,(0,0,0))
-        # textpos = text.get_rect()
-        # textpos.center = (screen_width // 2, screen_height // 2)
-        # screen.blit(text,textpos)
 		pygame.display.update()
-
+def bots():
+	global player
+	coloana, linie = random()
+	if markers[linie][coloana] == 0:
+		markers[linie][coloana] = player
+		player *= -1
+		check_game_over()
+	else:
+		print(str(coloana) + " " + str(linie))
+		bots()
 #main loop
-def start():
-	global game_over, markers,clicked, player, pos, markers, winner, bot
-
+def start(bot):
+	global game_over, markers,clicked, player, pos, markers, winner
 	while True:
 
 		#draw board and markers first
@@ -182,17 +191,27 @@ def start():
 			#run new game
 			if game_over == False:
 				#check for mouseclick
-				if event.type == pygame.MOUSEBUTTONDOWN and clicked == False:
+				if event.type == pygame.MOUSEBUTTONDOWN or clicked == False:
+					if bot == 1:
+						if player == -1:
+							bots()
 					clicked = True
 				if event.type == pygame.MOUSEBUTTONUP and clicked == True:
 					clicked = False
 					pos = pygame.mouse.get_pos()
 					cell_x = pos[0] // 100
 					cell_y = pos[1] // 100
-					if markers[cell_x][cell_y] == 0:
-						markers[cell_x][cell_y] = player
-						player *= -1
-						check_game_over()
+					if bot == 1:
+						if player == 1:
+							if markers[cell_x][cell_y] == 0:
+								markers[cell_x][cell_y] = player
+								player *= -1
+								check_game_over()
+					elif bot == 0:
+						if markers[cell_x][cell_y] == 0:
+							markers[cell_x][cell_y] = player
+							player *= -1
+							check_game_over()
 
 		#check if game has been won
 		if game_over == True:
