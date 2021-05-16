@@ -238,3 +238,5 @@ def start(bot):
 		pygame.display.update()
 
 meniu()
+
+print("Salut")
