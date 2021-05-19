@@ -97,3 +97,42 @@ def check_game_over():
 		if tie == True:
 			game_over = True
 			winner = 0
+
+def meniu():
+	global comp
+	screen.fill((180, 180, 180))# bg inceput
+	font = pygame.font.SysFont('freesansbold.ttf', 19)
+	text = font.render("Daca vrei să iesi din joc apasa tasta ESC.", True, (0, 0, 0))
+	textpos = text.get_rect()
+	textpos.center = (screen_width // 2, screen_height // 1.5)
+	screen.blit(text, textpos)
+	text2 = font.render("Daca vrei sa joci vs calculator apasa tasta 2.", True, (0, 0, 0))
+	text2pos = text2.get_rect()
+	text2pos.center = (screen_width // 2, screen_height // 1.7)
+	screen.blit(text2, text2pos)
+	text3 = font.render(" Daca vrei să joci 1v1 apasa tasta 1.", True, (0, 0, 0))
+	text3pos = text3.get_rect()
+	text3pos.center = (screen_width // 2, screen_height // 1.9)
+	screen.blit(text3, text3pos)
+	text4 = font.render("Player 1 = X, Player 2 = 0", True, (0, 0, 0))
+	text4pos = text4.get_rect()
+	text4pos.center = (screen_width // 2, screen_height // 2.1)
+	screen.blit(text4, text4pos)
+	font = pygame.font.SysFont('freesansbold.ttf', 100)
+	text5 = font.render("Quixo Game", True, (0, 0, 255))
+	text5pos = text5.get_rect()
+	text5pos.center = (screen_width // 2, screen_height // 3)
+	screen.blit(text5, text5pos)
+	while True:
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				quit()
+			if event.type == KEYDOWN: # verifica daca butonul este apasat
+				if event.key == K_ESCAPE:
+					quit()
+				if event.key == K_1:
+					start(0)
+				if event.key == K_2:
+					start(1)
+
+		pygame.display.update()			
