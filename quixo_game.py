@@ -2,6 +2,7 @@
 import pygame
 from pygame.locals import *
 import sys
+from random import randint
 pygame.init()
 
 
@@ -161,4 +162,22 @@ def meniu():
 				if event.key == K_2:
 					start(1)
 
-		pygame.display.update()			
+		pygame.display.update()	
+		
+
+def random():
+
+	col = randint(0, 4)
+	row = randint(0, 4)
+	return col, row
+
+def calc():
+	global player
+	col, row = random()
+	if markers[row][col] == 0:
+		markers[row][col] = player
+		player *= -1
+		check_game_over()
+	else:
+		print(str(col) + " " + str(row))
+		calc()
