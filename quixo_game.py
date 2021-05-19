@@ -55,6 +55,7 @@ def draw_markers():
 			y_pos += 1
 		x_pos += 1
 		
+		
 def check_game_over():
 	global game_over
 	global winner
