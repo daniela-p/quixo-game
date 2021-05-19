@@ -156,7 +156,7 @@ def meniu():
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				quit()
-			if event.type == KEYDOWN: # verifica daca butonul este apasat
+			if event.type == KEYDOWN: # check if button is pressed
 				if event.key == K_ESCAPE:
 					quit()
 				if event.key == K_1:
