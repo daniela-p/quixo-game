@@ -33,3 +33,24 @@ again_rect = Rect(screen_width // 2 - 80, screen_height // 2, 160, 50)
 for x in range(5):
 	row = [0] * 5
 	markers.append(row)
+
+def draw_board():
+	bg = (28, 170, 156)
+	grid = (23, 145, 135)
+	screen.fill(bg)
+	for x in range(1, 5):
+		pygame.draw.line(screen, grid, (0, 100 * x), (screen_width, 100 * x), line_width)
+		pygame.draw.line(screen, grid, (100 * x, 0), (100 * x, screen_height), line_width)
+
+def draw_markers():
+	x_pos = 0
+	for x in markers:
+		y_pos = 0
+		for y in x:
+			if y == 1:
+				pygame.draw.line(screen, black, (x_pos * 100 + 15, y_pos * 100 + 15), (x_pos * 100 + 85, y_pos * 100 + 85), line_width)
+				pygame.draw.line(screen, black, (x_pos * 100 + 85, y_pos * 100 + 15), (x_pos * 100 + 15, y_pos * 100 + 85), line_width)
+			if (y == -1):
+				pygame.draw.circle(screen, green, (x_pos * 100 + 50, y_pos * 100 + 50), 38, line_width)
+			y_pos += 1
+		x_pos += 1
