@@ -1,7 +1,9 @@
 # import modules
 import pygame
 from pygame.locals import *
+import sys
 pygame.init()
+
 
 screen_height = 500
 screen_width = 500
@@ -97,6 +99,30 @@ def check_game_over():
 		if tie == True:
 			game_over = True
 			winner = 0
+
+			
+def draw_game_over(winner):
+
+	if winner != 0:
+		end_text = "Player " + str(winner) + " a castigat!"
+	elif winner == 0:
+		end_text = "       Remiza"
+
+	end_img = font.render(end_text, True, blue)
+	pygame.draw.rect(screen, green, (screen_width // 2.32 - 100, screen_height // 2 - 60, 275, 50))
+	screen.blit(end_img, (screen_width // 2.2 - 100, screen_height // 2 - 50))
+
+	again_text = 'Inca un joc?'
+	again_img = font.render(again_text, True, blue)
+	pygame.draw.rect(screen, green, again_rect)
+	screen.blit(again_img, (screen_width // 2 - 80, screen_height // 2 + 10))
+
+	
+def quit():
+    pygame.display.quit()
+    pygame.quit()
+    sys.exit()
+
 
 def meniu():
 	global comp
