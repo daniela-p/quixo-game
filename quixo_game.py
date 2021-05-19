@@ -54,3 +54,45 @@ def draw_markers():
 				pygame.draw.circle(screen, green, (x_pos * 100 + 50, y_pos * 100 + 50), 38, line_width)
 			y_pos += 1
 		x_pos += 1
+		
+def check_game_over():
+	global game_over
+	global winner
+	print(markers)
+	x_pos = 0
+	for x in markers:
+		# check columns
+		if sum(x) == 5:
+			winner = 1
+			game_over = True
+		if sum(x) == -5:
+			winner = 2
+			game_over = True
+		# check rows
+		if markers[0][x_pos] + markers[1][x_pos] + markers[2][x_pos] + markers[3][x_pos] + markers[4][x_pos] == 5:
+			winner = 1
+			game_over = True
+		if markers[0][x_pos] + markers[1][x_pos] + markers[2][x_pos] + markers[3][x_pos] + markers[4][x_pos] == -5:
+			winner = 2
+			game_over = True
+		x_pos += 1
+
+	# check cross
+	if markers[0][0] + markers[1][1] + markers[2][2] + markers[3][3] + markers[4][4] == 5 or markers[4][0] + markers[2][2] + markers[0][4] + markers[1][3] + markers[3][1] == 5:
+		winner = 1
+		game_over = True
+	if markers[0][0] + markers[1][1] + markers[2][2] + markers[3][3] + markers[4][4] == -5 or markers[4][0] + markers[2][2] + markers[0][4] + markers[1][3] + markers[3][1] == -5:
+		winner = 2
+		game_over = True
+
+	# check for tie
+	if game_over == False:
+		tie = True
+		for row in markers:
+			for i in row:
+				if i == 0:
+					tie = False
+		# if it is a tie, then call game over and set winner to 0 (no one)
+		if tie == True:
+			game_over = True
+			winner = 0
