@@ -3,6 +3,7 @@ import pygame
 from pygame.locals import *
 import sys
 from random import randint
+from pygame.locals import (K_1, K_2, K_ESCAPE, KEYDOWN)
 
 
 pygame.init()
@@ -226,5 +227,32 @@ def start(comp):
 						if markers[cell_x][cell_y] == 0:
 							markers[cell_x][cell_y] = player
 							player *= -1
-							check_game_over()					
+							check_game_over()
+							
+		# check if game has been won
+		if game_over == True:
+			draw_game_over(winner)
+			# check for mouseclick to see if Play Again was clicked
+			if event.type == pygame.MOUSEBUTTONDOWN and clicked == False:
+				clicked = True
+			if event.type == pygame.MOUSEBUTTONUP and clicked == True:
+				clicked = False
+				pos = pygame.mouse.get_pos()
+				if again_rect.collidepoint(pos):
+					# reset variables
+					game_over = False
+					player = 1
+					pos = (0, 0)
+					markers = []
+					winner = 0
+					# create empty 5x5 list to represent the grid
+					for x in range(5):
+						row = [0] * 5
+						markers.append(row)
+
+		# update display
+		pygame.display.update()
+
+
+meniu()							
 
