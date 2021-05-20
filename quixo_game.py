@@ -183,3 +183,24 @@ def calc():
 	else:
 		print(str(col) + " " + str(row))
 		calc()
+		
+
+#main loop
+def start(comp):
+	global game_over, markers,clicked, player, pos, markers, winner
+	while True:
+
+		#draw board and markers first
+		draw_board()
+		draw_markers()
+
+		#handle events
+		for event in pygame.event.get():
+			#handle game exit
+			if event.type == pygame.QUIT:
+				quit()
+			if event.type == KEYDOWN:
+				if event.key == K_ESCAPE:
+					quit()
+
+
