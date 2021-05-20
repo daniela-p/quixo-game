@@ -203,4 +203,28 @@ def start(comp):
 				if event.key == K_ESCAPE:
 					quit()
 
+                            # run new game
+			if game_over == False:
+				# check for mouseclick
+				if event.type == pygame.MOUSEBUTTONDOWN or clicked == False:
+					if comp == 1:
+						if player == -1:
+							calc()
+					clicked = True
+				if event.type == pygame.MOUSEBUTTONUP and clicked == True:
+					clicked = False
+					pos = pygame.mouse.get_pos()
+					cell_x = pos[0] // 100
+					cell_y = pos[1] // 100
+					if comp == 1:
+						if player == 1:
+							if markers[cell_x][cell_y] == 0:
+								markers[cell_x][cell_y] = player
+								player *= -1
+								check_game_over()
+					elif comp == 0:
+						if markers[cell_x][cell_y] == 0:
+							markers[cell_x][cell_y] = player
+							player *= -1
+							check_game_over()					
 
