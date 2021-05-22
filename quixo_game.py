@@ -16,8 +16,8 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Quixo Game')
 
 # define colours
-black = (66, 66, 66)
-green = (239, 231, 200)
+dark_gray = (50, 50, 50)
+white = (255, 255, 255)
 blue = (0, 0, 255)
 
 # define font
@@ -130,7 +130,7 @@ def quit():
 
 def meniu():
 	global comp
-	screen.fill((180, 180, 180))# bg inceput
+	screen.fill((180, 200, 200)) # background 
 	font = pygame.font.SysFont('freesansbold.ttf', 19)
 	text = font.render("Daca vrei să iesi din joc apasa tasta ESC.", True, (0, 0, 0))
 	textpos = text.get_rect()
