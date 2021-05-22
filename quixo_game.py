@@ -1,6 +1,6 @@
 # import modules
 import pygame
-from pygame.locals import *
+from pygame.locals import*
 import sys
 from random import randint
 from pygame.locals import (K_1, K_2, K_ESCAPE, KEYDOWN)
@@ -8,12 +8,15 @@ from pygame.locals import (K_1, K_2, K_ESCAPE, KEYDOWN)
 
 pygame.init()
 
-
+# create screen
 screen_height = 500
 screen_width = 500
 line_width: int = 15
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Quixo Game')
+
+# background
+background = pygame.image.load('pygame.png')
 
 # define colours
 dark_gray = (50, 50, 50)
@@ -130,8 +133,9 @@ def quit():
 
 def meniu():
 	global comp
-	screen.fill((180, 200, 200)) # background 
-	font = pygame.font.SysFont('freesansbold.ttf', 19)
+	# background image
+        screen.blit(background, (0, 0))
+	font = pygame.font.SysFont('freesansbold.ttf', 25)
 	text = font.render("Daca vrei să iesi din joc apasa tasta ESC.", True, (0, 0, 0))
 	textpos = text.get_rect()
 	textpos.center = (screen_width // 2, screen_height // 1.5)
@@ -140,16 +144,16 @@ def meniu():
 	text2pos = text2.get_rect()
 	text2pos.center = (screen_width // 2, screen_height // 1.7)
 	screen.blit(text2, text2pos)
-	text3 = font.render(" Daca vrei să joci 1v1 apasa tasta 1.", True, (0, 0, 0))
+	text3 = font.render(" Daca vrei să joci 1vs1 apasa tasta 1.", True, (0, 0, 0))
 	text3pos = text3.get_rect()
 	text3pos.center = (screen_width // 2, screen_height // 1.9)
 	screen.blit(text3, text3pos)
 	text4 = font.render("Player 1 = X, Player 2 = 0", True, (0, 0, 0))
 	text4pos = text4.get_rect()
-	text4pos.center = (screen_width // 2, screen_height // 2.1)
+	text4pos.center = (screen_width // 2, screen_height // 2.2)
 	screen.blit(text4, text4pos)
 	font = pygame.font.SysFont('freesansbold.ttf', 100)
-	text5 = font.render("Quixo Game", True, (0, 0, 255))
+	text5 = font.render("Quixo Game", True, (0, 0, 100))
 	text5pos = text5.get_rect()
 	text5pos.center = (screen_width // 2, screen_height // 3)
 	screen.blit(text5, text5pos)
