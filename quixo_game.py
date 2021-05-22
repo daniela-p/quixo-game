@@ -135,6 +135,7 @@ def meniu():
 	global comp
 	# background image
         screen.blit(background, (0, 0))
+	
 	font = pygame.font.SysFont('freesansbold.ttf', 25)
 	text = font.render("Daca vrei să iesi din joc apasa tasta ESC.", True, (0, 0, 0))
 	textpos = text.get_rect()
