@@ -54,10 +54,10 @@ def draw_markers():
 		y_pos = 0
 		for y in x:
 			if y == 1:
-				pygame.draw.line(screen, black, (x_pos * 100 + 15, y_pos * 100 + 15), (x_pos * 100 + 85, y_pos * 100 + 85), line_width)
-				pygame.draw.line(screen, black, (x_pos * 100 + 85, y_pos * 100 + 15), (x_pos * 100 + 15, y_pos * 100 + 85), line_width)
+				pygame.draw.line(screen, dark_gray, (x_pos * 100 + 15, y_pos * 100 + 15), (x_pos * 100 + 85, y_pos * 100 + 85), line_width)
+				pygame.draw.line(screen, dark_gray, (x_pos * 100 + 85, y_pos * 100 + 15), (x_pos * 100 + 15, y_pos * 100 + 85), line_width)
 			if (y == -1):
-				pygame.draw.circle(screen, green, (x_pos * 100 + 50, y_pos * 100 + 50), 38, line_width)
+				pygame.draw.circle(screen, white, (x_pos * 100 + 50, y_pos * 100 + 50), 38, line_width)
 			y_pos += 1
 		x_pos += 1
 		
@@ -113,12 +113,12 @@ def draw_game_over(winner):
 		end_text = "       Remiza"
 
 	end_img = font.render(end_text, True, blue)
-	pygame.draw.rect(screen, green, (screen_width // 2.32 - 100, screen_height // 2 - 60, 275, 50))
+	pygame.draw.rect(screen, white, (screen_width // 2.32 - 100, screen_height // 2 - 60, 275, 50))
 	screen.blit(end_img, (screen_width // 2.2 - 100, screen_height // 2 - 50))
 
 	again_text = 'Inca un joc?'
 	again_img = font.render(again_text, True, blue)
-	pygame.draw.rect(screen, green, again_rect)
+	pygame.draw.rect(screen, white, again_rect)
 	screen.blit(again_img, (screen_width // 2 - 80, screen_height // 2 + 10))
 
 	
