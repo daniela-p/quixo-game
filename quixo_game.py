@@ -137,15 +137,15 @@ def meniu():
         screen.blit(background, (0, 0))
 	
 	font = pygame.font.SysFont('freesansbold.ttf', 25)
-	text = font.render("Daca vrei să iesi din joc apasa tasta ESC.", True, (0, 0, 0))
+	text = font.render("Daca vrei sa iesi din joc, apasa tasta ESC.", True, (0, 0, 0))
 	textpos = text.get_rect()
 	textpos.center = (screen_width // 2, screen_height // 1.5)
 	screen.blit(text, textpos)
-	text2 = font.render("Daca vrei sa joci vs calculator apasa tasta 2.", True, (0, 0, 0))
+	text2 = font.render("Daca vrei sa joci vs calculator, apasa tasta 2.", True, (0, 0, 0))
 	text2pos = text2.get_rect()
 	text2pos.center = (screen_width // 2, screen_height // 1.7)
 	screen.blit(text2, text2pos)
-	text3 = font.render(" Daca vrei să joci 1vs1 apasa tasta 1.", True, (0, 0, 0))
+	text3 = font.render(" Daca vrei sa joci 1vs1 apasa, tasta 1.", True, (0, 0, 0))
 	text3pos = text3.get_rect()
 	text3pos.center = (screen_width // 2, screen_height // 1.9)
 	screen.blit(text3, text3pos)
@@ -237,6 +237,7 @@ def start(comp):
 		# check if game has been won
 		if game_over == True:
 			draw_game_over(winner)
+			
 			# check for mouseclick to see if Play Again was clicked
 			if event.type == pygame.MOUSEBUTTONDOWN and clicked == False:
 				clicked = True
@@ -250,6 +251,7 @@ def start(comp):
 					pos = (0, 0)
 					markers = []
 					winner = 0
+					
 					# create empty 5x5 list to represent the grid
 					for x in range(5):
 						row = [0] * 5
