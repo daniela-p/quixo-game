@@ -145,7 +145,7 @@ def meniu():
 	text2pos = text2.get_rect()
 	text2pos.center = (screen_width // 2, screen_height // 1.7)
 	screen.blit(text2, text2pos)
-	text3 = font.render(" Daca vrei sa joci 1vs1 apasa, tasta 1.", True, (0, 0, 0))
+	text3 = font.render(" Daca vrei sa joci 1vs1, apasa tasta 1.", True, (0, 0, 0))
 	text3pos = text3.get_rect()
 	text3pos.center = (screen_width // 2, screen_height // 1.9)
 	screen.blit(text3, text3pos)
